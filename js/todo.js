@@ -23,23 +23,25 @@ function handletoDoSubmit(event) {
 }
 
 function deleteToDo(event) {
-  const li = event.target.parentElement;
-  li.remove();
-  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  const div = event.target.parentElement;
+  div.remove();
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(div.id));
   saveToDos();
 }
 
 function paintTodo(newTodo) {
-  const li = document.createElement("li");
-  li.id = newTodo.id;
+  const div = document.createElement("div");
+  div.id = newTodo.id;
+  const box = document.createElement("div");
   const span = document.createElement("span");
   span.innerText = newTodo.text;
   const button = document.createElement("button");
   button.innerText = "❌";
   button.addEventListener("click", deleteToDo);
-  li.appendChild(span);
-  li.appendChild(button);
-  toDoList.appendChild(li);
+  div.appendChild(box);
+  box.appendChild(span);
+  box.appendChild(button);
+  toDoList.appendChild(div);
 }
 
 toDoForm.addEventListener("submit", handletoDoSubmit);
